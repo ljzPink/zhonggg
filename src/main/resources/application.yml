@@ -1,0 +1,51 @@
+server:
+  port: 9088
+#  servlet:
+#    context-path: /datamanager
+
+spring:
+  datasource:
+    name: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://111.231.93.35:3306/ceshi?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ljz
+    password: Ljz217645!
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: zedHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: 192.168.7.250
+    port: 6379
+  jmx:
+    enabled: false
+  servlet:
+    multipart:
+      max-file-size: 10485760
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    root: info
+    com.zaxxer.hikari: warn
+    com.zed.datamanager.dao: debug #SQL显示
+
+shiroFilter:
+  anons: /api/webLogin,/api/appLogin,/api/kpiLogin
+  anyRole: /api/**
+#  anyRole: /api/ #本地debug
+
+# pageHelper分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  page-size-zero: true
