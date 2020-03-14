@@ -2,9 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>欢度国庆</title>
+    <title>忠哥哥</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/home/index.css" rel="stylesheet" type="text/css">
 </head>
-<body background="/img/home/bg.jpg">
-70周年国庆快乐
+
+<body>
+<div class="container-fluid">
+
+    <div class="col-xs-6 col-md-2 col-lg-2 ">
+        <audio id = "bgMusic" autoplay="autoplay" controls="controls"loop="loop" preload="auto"
+               src="/music/1.mp3">
+        </audio>
+    </div>
+    <div class="col-md-8 col-lg-8 ">
+        <div class="box hidden-sm">
+            <div class="di">
+                <div class="z">
+                    <p><img src="/img/home/1.jpg"> </p>
+                    <p><img src="/img/home/2.jpg"></p>
+                    <p><img src="/img/home/3.jpg"></p>
+                    <p><img src="/img/home/4.jpg"></p>
+                    <p><img src="/img/home/5.jpg"></p>
+                    <p><img src="/img/home/6.jpg"></p>
+                    <p><img src="/img/home/7.jpg"></p>
+                    <p><img src="/img/home/8.jpg"></p>
+                    <p><img src="/img/home/9.jpg"></p>
+                    <p><img src="/img/home/10.jpg"></p>
+                    <p><img src="/img/home/11.jpg"></p>
+                    <p><img src="/img/home/12.jpg"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-xs-3 col-md-3 col-lg-4">
+                <button type="button" class="btn btn-primary btn-lg" onclick="javascript:window.location.href='/index'">欢迎进入</button>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-4 ">
+                <button type="button" class="btn btn-primary btn-lg" onclick="javascript:window.location.href='/poem'">诗词鉴赏</button>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-4">
+                <button type="button" class="btn btn-primary btn-lg" onclick="javascript:window.location.href='/index'">疫情播报</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-2 col-lg-2 bg-warning">
+
+    </div>
+</div>
+<!--<footer  class="navbar-fixed-bottom">
+    <div class="col-xs-6 col-md-2 col-lg-3 bg-warning">
+
+    </div>
+    <div class="col-xs-6 col-md-2 col-lg-3 bg-warning">
+        zhonggg
+    </div>
+    <div class="col-xs-6 col-md-2 col-lg-3 bg-warning">
+
+    </div>
+</footer>-->
+<script>
+    window.onload = function () {
+        setPs();
+        move();
+        drop();
+        /*document.getElementById("bgMusic").play();*/
+    }
+    //初始化信息
+
+</script>
 </body>
+<script type="text/javascript" src="/assets/jQuery/jQuery-3.4.1.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/home/index.js"></script>
 </html>

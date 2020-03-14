@@ -1,0 +1,65 @@
+.box {
+    position: relative;
+    height: 500px;
+    width: 500px;
+    margin: 100px auto;
+    transform-style: preserve-3d;
+    /*perspective: 900px;*/
+    animation: go 90s linear infinite;
+
+}
+
+.di {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 200px;
+    width: 200px;
+    transform: translate(-50%, -50%) rotatex(110deg);
+    transform-style: preserve-3d;
+   /* animation: go 45s linear infinite;*/
+}
+
+.z {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    /*animation: go 45s linear infinite;*/
+    /*transform: rotatez(1deg);*/
+}
+
+p {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    /*为了保证圆心在父盒子中心，父盒子旋转时圆心稳定，所以设置left*/
+    left: 25px;
+    height: 133px;
+    width: 200px;
+    border: 2px solid #fd7068;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*opacity: .7;*/
+    font-size: 10px;
+    line-height: 133px;
+    text-align: center;
+    /*box-shadow: 0 0 100px #16ff8b;*/
+    /*倒影，不兼容*/
+    -webkit-box-reflect: below 10px -webkit-linear-gradient(top, rgba(250, 250, 250, 0), rgba(250, 250, 250, .0) 30%, rgba(250, 250, 250, 0.5));
+    box-reflect: below 10px -webkit-linear-gradient(top, rgba(250, 250, 250, 0), rgba(250, 250, 250, .0) 30%, rgba(250, 250, 250, 0.5));
+    /*backface-visibility: hidden;*/
+}
+
+@keyframes go {
+    0%{transform: rotateX(0deg) rotateY(0deg);}
+    25%{transform: rotateX(0deg) rotateY(180deg);}
+    50%{transform: rotateX(0deg) rotateY(360deg);}
+    75%{transform: rotateX(0deg) rotateY(540deg);}
+    100%{transform: rotateX(0deg) rotateY(720deg);}
+
+}
