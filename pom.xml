@@ -45,6 +45,18 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- mybatis分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -104,11 +116,11 @@
             <artifactId>pcap4j-packetfactory-static</artifactId>
             <version>1.6.3</version>
         </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.hylanda.pcap</groupId>
             <artifactId>pcap</artifactId>
             <version>6.0.36</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>

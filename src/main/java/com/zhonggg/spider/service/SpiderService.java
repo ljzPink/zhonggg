@@ -51,7 +51,7 @@ public class SpiderService {
                     .timeout(5000).get();
             //诗词整体内容
             Element element = document.select("div.sons div.cont").first();
-
+            Element tag = document.select("div.sons div.tag").first();
             //诗词标题
             String title = element.select("h1").first().text();
             //获取朝代和作者
@@ -66,8 +66,8 @@ public class SpiderService {
             poem.setDynasty(dynasty);
             poem.setAuthor(author);
             poem.setContent(content);
-            poem.setCategory("唐诗三百首");
-            //把poem封装到list中
+            poem.setCategory(tag.select("a").first().text());
+            //把poem封装到
             poems.add(poem);
 
 
