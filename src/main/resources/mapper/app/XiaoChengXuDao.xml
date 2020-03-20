@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhonggg.weixin.dao.XiaoChengXuDao">
 <select id="getPoemList" parameterType="com.zhonggg.weixin.dto.PoemDTO" resultType="com.zhonggg.weixin.vo.PoemVO">
-    SELECT  id ,title, dynasty,author,content,category FROM poem
+    SELECT  id ,title FROM poem
     <where>
         <if test="title != null">
             title = #{title}
@@ -19,8 +19,13 @@
         <if test="category != null">
             category = #{category}
         </if>
+        <if test="searchKey != null">
+            title LIKE concat('%',#{searchKey},'%') OR dynasty LIKE  concat('%',#{searchKey},'%') OR author LIKE  concat('%',#{searchKey},'%') OR content LIKE  concat('%',#{searchKey},'%') OR category LIKE  concat('%',#{searchKey},'%')
+        </if>
 
     </where>
 </select>
-
+    <select id="getPoemById" parameterType="Integer" resultType="com.zhonggg.weixin.vo.PoemVO">
+        SELECT  id ,title, dynasty,author,content,category FROM poem WHERE id = #{id}
+    </select>
 </mapper>

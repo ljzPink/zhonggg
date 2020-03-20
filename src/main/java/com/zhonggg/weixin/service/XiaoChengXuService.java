@@ -25,4 +25,8 @@ public class XiaoChengXuService {
         return new PageVO<PoemVO>(pageInfo);
 
     }
+
+    public PoemVO getPoemById(Integer id) {
+        return xiaoChengXuDao.getPoemById(id);
+    }
 }

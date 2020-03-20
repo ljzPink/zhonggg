@@ -14,6 +14,7 @@ public class PoemDTO extends PageDTO {
     private String author;
     private String content;
     private String category;
+    private String searchKey;
 
     public int getId() {
         return id;
@@ -61,5 +62,13 @@ public class PoemDTO extends PageDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
     }
 }
