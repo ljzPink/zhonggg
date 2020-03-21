@@ -6,6 +6,7 @@ import com.zhonggg.spider.service.SpiderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: lijinzhong
  * @create: 2020-03-05 14:15
  */
-@RestController("/spider")
+@RestController
+@RequestMapping("/spider")
 public class SpiderController {
 
     @Autowired
@@ -22,6 +24,11 @@ public class SpiderController {
     @PostMapping(value = "/poem")
     public Result queryFocusPerson() {
         spiderService.spiderPoem();
+        return ResultUtil.success();
+    }
+    @PostMapping(value = "/chnDic")
+    public Result chnDic() {
+        spiderService.chnDic();
         return ResultUtil.success();
     }
 }

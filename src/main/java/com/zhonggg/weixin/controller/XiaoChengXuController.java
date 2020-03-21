@@ -25,8 +25,8 @@ public class XiaoChengXuController {
         return ResultUtil.success(poem);
     }
     @PostMapping("/getPoemById")
-    public Result getPoemById(Integer id){
-        PoemVO  poem = xiaoChengXuService.getPoemById(id);
+    public Result getPoemById(@RequestBody PoemDTO poemDTO){
+        PoemVO  poem = xiaoChengXuService.getPoemById(poemDTO.getId());
         return ResultUtil.success(poem);
     }
 }

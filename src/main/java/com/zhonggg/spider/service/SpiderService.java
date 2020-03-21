@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -28,9 +30,9 @@ public class SpiderService {
     public void spiderPoem() {
         try {
             //获取url列表
-            List<String> urls = getUrlsFromIndex();
+            Map<String, List<String>> urlsFromIndex = getUrlsFromIndex();
             // 获取url下的诗文
-            List<Poem> poems = getPoemFromUrls(urls);
+            List<Poem> poems = getPoemFromUrls(urlsFromIndex);
             // 出入数据库
             spiderDao.addPoemBatch(poems);
 
@@ -41,43 +43,48 @@ public class SpiderService {
 
     }
 
-    private List<Poem> getPoemFromUrls(List<String> urls) throws Exception {
+    private List<Poem> getPoemFromUrls(Map<String, List<String>> urlMap) throws Exception {
         List<Poem> poems = new ArrayList<>();
         Poem poem ;
-        for (String url : urls) {
-            //创建连接
-            Document document = Jsoup.connect(url)
-                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36")
-                    .timeout(5000).get();
-            //诗词整体内容
-            Element element = document.select("div.sons div.cont").first();
-            Element tag = document.select("div.sons div.tag").first();
-            //诗词标题
-            String title = element.select("h1").first().text();
-            //获取朝代和作者
-            String dyAndAuthor = element.select("p.source a").text();
-            String dynasty = dyAndAuthor.split(" ")[0];
-            String author = dyAndAuthor.split(" ")[1];
-            //获取诗词内容
-            String content = element.select("div.contson").text();
+        for (Map.Entry<String, List<String>> m : urlMap.entrySet()) {
+            String category = m.getKey();
+            List<String> urls = m.getValue();
+            for (String url : urls) {
+                //创建连接
+                Document document = Jsoup.connect(url)
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36")
+                        .timeout(5000).get();
+                //诗词整体内容
+                Element element = document.select("div.sons div.cont").first();
+                //诗词标题
+                String title = element.select("h1").first().text();
+                //获取朝代和作者
+                String dyAndAuthor = element.select("p.source a").text();
+                String dynasty = dyAndAuthor.split(" ")[0];
+                String author = dyAndAuthor.split(" ")[1];
+                //获取诗词内容
+                String content = element.select("div.contson").text();
 
-            poem = new Poem();
-            poem.setTitle(title);
-            poem.setDynasty(dynasty);
-            poem.setAuthor(author);
-            poem.setContent(content);
-            poem.setCategory(tag.select("a").first().text());
-            //把poem封装到
-            poems.add(poem);
+                poem = new Poem();
+                poem.setTitle(title);
+                poem.setDynasty(dynasty);
+                poem.setAuthor(author);
+                poem.setContent(content);
+                poem.setCategory(category);
+                //把poem封装到list
+                poems.add(poem);
 
 
+            }
         }
+
         return poems;
     }
 
-    private static List<String> getUrlsFromIndex() throws IOException {
-        //创建一个List
-        List<String> urls = new ArrayList<>();
+    private static Map<String ,List<String>> getUrlsFromIndex() throws IOException {
+
+        //创建一个MAP
+        HashMap<String, List<String>> stringListHashMap = new HashMap<>();
         String url = "https://so.gushiwen.org/gushi/songsan.aspx";
         //创建连接
         Connection connect = Jsoup.connect(url);
@@ -86,11 +93,20 @@ public class SpiderService {
         connect.timeout(5000);
         //爬取数据
         Document document = connect.get();
-        Elements elements = document.select("div.typecont a");
+        Elements elements = document.select("div.typecont");
         for (Element element : elements) {
-            System.out.println();
-            urls.add("https://so.gushiwen.org"+element.attr("href"));
+            String category = element.select(".bookMl strong").first().text();
+            List<String> urls = new ArrayList<>();
+            stringListHashMap.put(category,urls);
+            Elements a = element.select("a");
+            for (Element el: a) {
+                urls.add("https://so.gushiwen.org"+el.attr("href"));
+            }
         }
-        return urls;
+        return stringListHashMap;
+    }
+
+    public void chnDic() {
+
     }
 }
