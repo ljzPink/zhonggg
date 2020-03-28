@@ -31,4 +31,10 @@ public class SpiderController {
         spiderService.chnDic();
         return ResultUtil.success();
     }
+
+    @PostMapping(value = "/news")
+    public Result news() {
+        spiderService.news();
+        return ResultUtil.success();
+    }
 }

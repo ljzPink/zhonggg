@@ -1,6 +1,8 @@
 package com.zhonggg.spider.service;
 
+import com.zhonggg.commonUtils.DateUtil;
 import com.zhonggg.spider.dao.SpiderDao;
+import com.zhonggg.spider.model.NewsInfo;
 import com.zhonggg.spider.model.Poem;
 
 import org.jsoup.Connection;
@@ -12,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description:
@@ -108,5 +107,38 @@ public class SpiderService {
 
     public void chnDic() {
 
+    }
+
+    public void news() {
+        try {
+
+            // 获取url下的诗文
+            List<NewsInfo> poems = getNewsInfos("http://www.xinhuanet.com/whxw.htm");
+            // 出入数据库
+            spiderDao.addNewsInfoBatch(poems);
+        }catch (Exception e){
+
+        }
+
+    }
+
+    private List<NewsInfo> getNewsInfos(String url) throws Exception {
+        List<NewsInfo> NewsInfos = new ArrayList<>();
+        Connection connect = Jsoup.connect(url);
+        connect.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36");
+        connect.timeout(5000);
+        Document document = connect.get();
+        Elements elements = document.select(".dataList .clearfix");
+        for (Element element : elements) {
+            NewsInfo newsInfo = new NewsInfo();
+            NewsInfos.add(newsInfo);
+            newsInfo.setSource("新华社新闻");
+            newsInfo.setUpdateTime(DateUtil.format(new Date()));
+            Element a = element.select("h3 a").first();
+            newsInfo.setUrl(a.attr("href"));
+            newsInfo.setTitle(a.text());
+            newsInfo.setDate(element.select("span").first().text());
+        }
+        return NewsInfos;
     }
 }

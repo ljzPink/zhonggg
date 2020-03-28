@@ -121,6 +121,12 @@
             <artifactId>pcap</artifactId>
             <version>6.0.36</version>
         </dependency>-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            &lt;!&ndash;开发时注释掉,使用内置tomcat启动;打包时放开,包内不含有tomcat &ndash;&gt;
+            <scope>provided</scope>
+        </dependency>-->
     </dependencies>
 
     <build>

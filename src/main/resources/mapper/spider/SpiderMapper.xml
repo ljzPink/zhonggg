@@ -10,7 +10,13 @@
         </foreach>
     </insert>
 
+    <select id="addNewsInfoBatch" parameterType="List">
+        INSERT INTO `ceshi`.`news`( `title`, `content`, `url`, `date`, `source`) VALUES
+        <foreach collection="news" item="item" separator=",">
+            ( #{item.title}, #{item.content}, #{item.url},  #{item.date}, #{item.source})
+        </foreach>
 
+    </select>
 
 
 </mapper>

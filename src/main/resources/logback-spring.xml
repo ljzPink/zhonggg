@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 控制台打印日志的相关配置 -->
+    <!-- 此xml在spring-boot里 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <!-- 开启后可以通过jmx动态控制日志级别(springboot Admin的功能) -->
+    <!--<jmxConfigurator/>-->
+
+    <!-- 定义日志的根目录 -->
+    <property name="LOG_HOME" value="/usr/local/tomcat/logs/"/>
+
+    <!-- 文件保存日志的相关配置 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${LOG_HOME}datamanager_log.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [%t] [%C{10}.%M %L %logger{59}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+            </pattern>
+        </encoder>
+        <!-- 日志级别过滤器 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <!--<onMismatch>DENY</onMismatch>-->
+        </filter>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${LOG_HOME}datamanager_log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 最大保存时间：30-->
+            <maxHistory>30</maxHistory>
+            <!-- 最大文件大小：10M-->
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [%t] [%C{10}.%M %L %logger{59}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+            </pattern>
+            <!--日志控制台显示颜色-->
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(${LOG_LEVEL_PATTERN:-%5p}) [%t] [%cyan(%C{10}.%M %L %logger{59})] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+            </pattern>-->
+        </encoder>
+    </appender>
+
+    <!-- 基于INFO处理日志: 具体控制台或者文件对日志级别的处理还要看所在appender配置的filter,如果没有配置filter,则使用root配置 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
