@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1588227699022" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1588227699022" name="" targetNamespace="http://www.activiti.org/testm1588227699022" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="璐㈠姟�?�℃�?" isClosed="false" isExecutable="true" name="璐㈠姟�?�℃�?" processType="None">
+    <startEvent id="apply" name="apply"/>
+    <userTask activiti:exclusive="true" id="报销申请" name="报销申请"/>
+    <userTask activiti:assignee="财务人员" activiti:exclusive="true" id="财务审批" name="财务审批"/>
+    <sequenceFlow id="_2" sourceRef="apply" targetRef="报销申请"/>
+    <sequenceFlow id="_3" sourceRef="报销申请" targetRef="财务审批"/>
+    <userTask activiti:assignee="经理" activiti:exclusive="true" id="经理审批" name="经理审批"/>
+    <endEvent id="_6" name="EndEvent"/>
+    <sequenceFlow id="_7" sourceRef="财务审批" targetRef="经理审批"/>
+    <sequenceFlow id="_8" sourceRef="经理审批" targetRef="_6"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="璐㈠姟�?�℃�?">
+      <bpmndi:BPMNShape bpmnElement="apply" id="Shape-apply">
+        <dc:Bounds height="32.0" width="32.0" x="225.0" y="35.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="报销申请" id="Shape-报销申请">
+        <dc:Bounds height="55.0" width="85.0" x="225.0" y="180.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="财务审批" id="Shape-财务审批">
+        <dc:Bounds height="55.0" width="85.0" x="245.0" y="330.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="经理审批" id="Shape-经理审批">
+        <dc:Bounds height="55.0" width="85.0" x="255.0" y="490.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" id="Shape-_6">
+        <dc:Bounds height="32.0" width="32.0" x="285.0" y="680.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_2" id="BPMNEdge__2" sourceElement="apply" targetElement="鎶ラ攢鐢宠">
+        <di:waypoint x="241.0" y="67.0"/>
+        <di:waypoint x="241.0" y="180.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3" id="BPMNEdge__3" sourceElement="鎶ラ攢鐢宠" targetElement="_4">
+        <di:waypoint x="277.5" y="235.0"/>
+        <di:waypoint x="277.5" y="330.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7" id="BPMNEdge__7" sourceElement="_4" targetElement="_5">
+        <di:waypoint x="292.5" y="385.0"/>
+        <di:waypoint x="292.5" y="490.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_5" targetElement="_6">
+        <di:waypoint x="301.0" y="545.0"/>
+        <di:waypoint x="301.0" y="680.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

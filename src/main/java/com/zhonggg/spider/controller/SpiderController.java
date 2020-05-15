@@ -37,4 +37,9 @@ public class SpiderController {
         spiderService.news();
         return ResultUtil.success();
     }
+    @PostMapping(value = "/music")
+    public Result music() {
+        spiderService.music();
+        return ResultUtil.success();
+    }
 }

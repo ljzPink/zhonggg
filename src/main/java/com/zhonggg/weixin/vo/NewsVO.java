@@ -1,13 +1,11 @@
-package com.zhonggg.weixin.dto;
-
-import com.zhonggg.commonUtils.dto.PageDTO;
+package com.zhonggg.weixin.vo;
 
 /**
  * @description:
  * @author: lijinzhong
- * @create: 2020-03-27 13:33
+ * @create: 2020-03-30 09:58
  */
-public class NewDTO extends PageDTO {
+public class NewsVO {
     private Integer id;
     private String title;
     private String content;
@@ -15,8 +13,6 @@ public class NewDTO extends PageDTO {
     private String date;
     private String source;
     private String updateTime;
-    private String searchKey;
-
 
     public Integer getId() {
         return id;
@@ -26,22 +22,18 @@ public class NewDTO extends PageDTO {
         this.id = id;
     }
 
-    
     public String getTitle() {
         return title;
     }
 
-    
     public void setTitle(String title) {
         this.title = title;
     }
 
-    
     public String getContent() {
         return content;
     }
 
-    
     public void setContent(String content) {
         this.content = content;
     }
@@ -76,13 +68,5 @@ public class NewDTO extends PageDTO {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getSearchKey() {
-        return searchKey;
-    }
-
-    public void setSearchKey(String searchKey) {
-        this.searchKey = searchKey;
     }
 }

@@ -28,4 +28,12 @@
     <select id="getPoemById" parameterType="Integer" resultType="com.zhonggg.weixin.vo.PoemVO">
         SELECT  id ,title, dynasty,author,content,category FROM poem WHERE id = #{id}
     </select>
+
+    <select id="getNews" parameterType="com.zhonggg.weixin.dto.NewDTO" resultType="com.zhonggg.weixin.vo.NewsVO">
+        SELECT * FROM  news ORDER  BY date DESC
+    </select>
+
+    <select id="getSongs" parameterType="com.zhonggg.weixin.dto.SongDTO" resultType="com.zhonggg.weixin.vo.SongVO">
+        SELECT * FROM  song
+    </select>
 </mapper>

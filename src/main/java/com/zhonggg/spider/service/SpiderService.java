@@ -1,17 +1,23 @@
 package com.zhonggg.spider.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zhonggg.commonUtils.DateUtil;
+import com.zhonggg.commonUtils.log.LoggerUtil;
 import com.zhonggg.spider.dao.SpiderDao;
 import com.zhonggg.spider.model.NewsInfo;
 import com.zhonggg.spider.model.Poem;
 
+import com.zhonggg.spider.model.Song;
+import org.apache.commons.lang.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.*;
@@ -140,5 +146,38 @@ public class SpiderService {
             newsInfo.setDate(element.select("span").first().text());
         }
         return NewsInfos;
+    }
+
+    public void music() {
+        ArrayList<Song> songs = new ArrayList<>();
+        while (true){
+            try{
+                long id = ((long) (Math.random() * 9 * Math.pow(10, 8)) + (long) Math.pow(10, 8));
+                String baseUrl =  "https://api.toubiec.cn/rand.music?type=netease&id="+id;
+                RestTemplate restTemplate = new RestTemplate();
+                ResponseEntity<String> forEntity = restTemplate.getForEntity(baseUrl, String.class);
+                JSONObject jsonObject = JSONObject.parseObject(forEntity.getBody());
+                if(jsonObject.getInteger("code") == 1){
+                    Song song = jsonObject.getObject("data", Song.class);
+                    song.setSongId(id);
+                    if(StringUtils.isNotEmpty(song.getUrl()) && StringUtils.isNotEmpty(song.getName())){
+                        songs.add(song);
+                    }else{
+                        LoggerUtil.LOGGER.info("url 和歌曲名不能为空" +jsonObject.toJSONString());
+                    }
+                    if(songs.size() == 50){
+                        spiderDao.addSongsBatch(songs);
+                    }
+                }else{
+                    LoggerUtil.LOGGER.info(jsonObject.toJSONString());
+                }
+            }catch (Exception e){
+                LoggerUtil.LOGGER.info(e.toString());
+                continue;
+            }
+
+        }
+
+
     }
 }

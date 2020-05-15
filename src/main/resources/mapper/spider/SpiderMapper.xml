@@ -18,5 +18,12 @@
 
     </select>
 
+    <insert id="addSongsBatch" parameterType="List">
+        INSERT INTO `ceshi`.`song`( `songId`, `name`, `author`, `url`, `lrc_data`, `copyright`) VALUES
+        <foreach collection="songs" item="item" separator=",">
+            ( #{item.songId}, #{item.name}, #{item.author},  #{item.url}, #{item.lrc_data}, #{item.copyright})
+        </foreach>
+    </insert>
+
 
 </mapper>

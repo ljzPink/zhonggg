@@ -2,7 +2,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background-color: #29454d;
+    background-color: #0d0d10;
     /*禁止文字被选中*/
     -moz-user-select: none;
     /*火狐*/
@@ -13,5 +13,27 @@ body {
     -khtml-user-select: none;
     /*早期浏览器*/
     user-select: none;
+
+    background-size: cover;
+}
+.footer {
     overflow: hidden;
+    margin: 0 auto;
+    height: 10%;
+    width: 100%;
+    background: url('https://zhonggg.com/staticFile/web/footbj.png') center top #2b2d46 no-repeat;
+    position: fixed;
+    bottom: 0;
+}
+.footer > .foottext{
+    text-align: center;
+    color: #999;
+    width:100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.list-group >li>.news_date{
+    display:block;
+    float:right;
 }

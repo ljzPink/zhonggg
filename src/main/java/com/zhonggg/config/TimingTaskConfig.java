@@ -28,6 +28,7 @@ public class TimingTaskConfig {
      */
     @Scheduled(cron = "0 0 8 * * *")
     private void clearFile() {
+        //Log
         spiderService.news();
     }
 

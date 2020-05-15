@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @MapperScan("com.zhonggg.*.dao")
-@SpringBootApplication(scanBasePackages = "com")
+@SpringBootApplication(scanBasePackages = "com.zhonggg")
 public class ZhongggApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
