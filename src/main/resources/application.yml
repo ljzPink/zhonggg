@@ -21,7 +21,7 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
   redis:
-    host: 192.168.7.250
+    host: 111.231.93.35
     port: 6379
   jmx:
     enabled: false
