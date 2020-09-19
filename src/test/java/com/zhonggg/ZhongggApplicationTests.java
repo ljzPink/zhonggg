@@ -14,7 +14,7 @@ public class ZhongggApplicationTests {
     private RedisTemplate<String,String> redisTemplate;
     @Test
     public void contextLoads() {
-        redisTemplate.opsForValue().set("myKey","myValue");
+        //redisTemplate.opsForValue().set("myKey","myValue");
         System.out.println(redisTemplate.opsForValue().get("myKey"));
     }
 

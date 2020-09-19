@@ -1,6 +1,7 @@
 package com.zhonggg.weixin.dto;
 
-import com.zhonggg.commonUtils.dto.PageDTO;
+
+import com.zhonggg.common.dto.PageDTO;
 
 /**
  * @description:

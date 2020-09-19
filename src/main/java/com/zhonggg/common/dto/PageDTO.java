@@ -1,4 +1,4 @@
-package com.zhonggg.commonUtils.dto;
+package com.zhonggg.common.dto;
 
 /**
  * @description:
@@ -8,6 +8,7 @@ package com.zhonggg.commonUtils.dto;
 public class PageDTO {
     private Integer pageNo = 1;
     private Integer pageSize = 1000000;
+    private Integer startIndex = 0;
 
     public Integer getPageNo() {
         return pageNo;
@@ -23,5 +24,13 @@ public class PageDTO {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Integer getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(Integer startIndex) {
+        this.startIndex = startIndex;
     }
 }

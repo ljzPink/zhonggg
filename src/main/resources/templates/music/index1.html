@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>音乐播放器博物馆</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+        body{
+            padding-top:50px;
+            padding-bottom:50px;
+        }
+
+        .carousel{
+            height: 500px;
+            background-color:#000;
+            margin-bottom:60px;
+        }
+
+        .carousel .item{
+            height: 500px;
+            background-color: #000;
+        }
+
+        .carousel img{
+            width: 100%;
+        }
+
+
+        footer{
+            margin:90px;
+        }
+
+        #summary-container .col-md-3{
+            text-align:center;
+        }
+
+        #summary-container img{
+            width:100px;
+            height:60px;
+        }
+
+        hr.divider{
+            margin:40px;
+        }
+
+        .tab-content{
+            margin:90px;
+        }
+
+        #feature-tab{
+            margin-right:50px;
+            margin-left: 50px;
+        }
+
+        .feature-heading {
+            font-size: 50px;
+            color: #2a6496;
+        }
+
+        .feature-heading .text-muted {
+            font-size: 28px;
+        }
+
+
+        .carousel-caption p{
+            margin-bottom:20px;
+            font-size:20px;
+            line-height:1.8;
+        }
+
+    </style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="    false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">音乐播放器博物馆</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#carousel-example-generic">综述</a></li>
+                <li><a href="#summary-container" id="sma">简述</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >特点<span class="caret"></span></a>
+
+                    <ul class="dropdown-menu" role="menu" id="kiss">
+                        <li><a href="#feature-tab" data-tab="tab-QQmusic">QQ音乐</a></li>
+                        <li><a href="#feature-tab" data-tab="tab-wangyiyun">网易云音乐</a></li>
+                        <li><a href="#feature-tab" data-tab="tab-kuwo">酷我音乐</a></li>
+                        <li><a href="#feature-tab" data-tab="tab-kugou">酷狗音乐</a></li>
+                    </ul>
+
+                <li><a href="#" data-toggle="modal" data-target="#spaul">关于</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
+
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="image/d3c7f61a5d2f76fdcd9fd66525a4d2ba.jpg" alt="1 slide">
+            <div class="carousel-caption">
+                <h1>QQ音乐</h1>
+                <p>QQ音乐播放器是一款带有精彩音乐推荐功能的播放器。</p>
+                <p><a class="btn btn-lg btn-primary" href="https://dldir1.qq.com/music/clntupate/QQMusic_YQQFloatLayer.exe" target="_blank" role="button">点我下载</a></p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="image/网易云2.jpg" alt="2 slide">
+            <div class="carousel-caption">
+                <h1>网易云音乐</h1>
+                <p>国内首个以“歌单”作为核心架构的音乐APP,国内最大、最优质的“歌单”库,批量遇见好听音乐更加简单,轻松创建“歌单”。</p>
+                <p><a class="btn btn-lg btn-primary" href="https://d1.music.126.net/dmusic/obj/w5zCg8OCw6fCn2vDicOl/586346057/3e98/201911319853/cloudmusicsetup2.7.0.198230.exe" target="_blank" role="button">点我下载</a></p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="image/bg_like.jpg" alt="3 slide">
+            <div class="carousel-caption">
+                <h1>酷我音乐</h1>
+                <p>酷我音乐盒是一款融歌曲和MV搜索、在线播放、同步歌词为一体的音乐聚合播放器。具有“全”、“快”、“炫”三大特点。</p>
+                <p><a class="btn btn-lg btn-primary" href="http://down.kuwo.cn/mbox/kwmusic_web_4.exe" target="_blank" role="button">点我下载</a></p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="image/20190109104215314555.jpg" alt="4 slide">
+            <div class="carousel-caption">
+                <h1>酷狗音乐</h1>
+                <p>酷狗作为中国领先的音乐搜索和下载平台,是中国国内最先提供在线试听功能的音频播放软件。</p>
+                <p><a class="btn btn-lg btn-primary" href="http://downmini.kugou.com/web/kugou8395.exe" target="_blank" role="button">点我下载</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">上一页</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">下一页</span>
+    </a>
+</div>
+
+
+
+<div class="container summary" id="suma">
+    <div class="row" id="summary-container">
+        <div class="col-md-3">
+            <img src="image/qq音乐.jpg" alt="qqmusic">
+            <h2>QQ音乐</h2>
+            <p>通过贴心的社区服务,让QQ音乐成为中国网民在线音乐生活的首选品牌，引领着人们的音乐生活方式！</p>
+        </div>
+        <div class="col-md-3">
+            <img src="image/img_localize_0f893220d6a27b8013bedae1ac0c71ca_560x350.jpg" alt="wangyiyun">
+            <h2>网易云音乐</h2>
+            <p>明星、专业音乐人、DJ进驻，专业的私房“歌单”和音乐推荐，格调顿现。</p>
+        </div>
+        <div class="col-md-3">
+            <img src="image/20160623145235489.jpg" alt="kuwo">
+            <h2>酷我音乐</h2>
+            <p>酷我音乐盒是一款融歌曲和MV搜索、下载、在线播放、歌词同步显示为一体音乐资源聚合器、播放器。</p>
+        </div>
+        <div class="col-md-3">
+            <img src="image/0a76636f8f5c6dcbab3d81984da0d584.jpg" alt="kugou">
+            <h2>酷狗音乐</h2>
+            <p>酷狗与中国国内外多家知名品牌企业及机构合作，提供了一个数量庞大的在线音乐库，汇聚了数以万计的在线音乐。
+            </p>
+        </div>
+    </div>
+</div>
+
+<hr class="divider">
+
+
+
+<ul class="nav nav-tabs" role="tablist" id="feature-tab">
+    <li class="active"><a href="#tab-QQmusic" role="tab" data-toggle="tab">QQ音乐</a></li>
+    <li><a href="#tab-wangyiyun" role="tab" data-toggle="tab">网易云音乐</a></li>
+    <li><a href="#tab-kuwo" role="tab" data-toggle="tab">酷我音乐</a></li>
+    <li><a href="#tab-kugou" role="tab" data-toggle="tab">酷狗音乐</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="tab-QQmusic">
+        <div class="row feature">
+            <div class="col-md-7">
+
+                <h2 class="feature-heading">QQ音乐<span class="text-muted">腾讯出品</span></h2>
+
+                <p class="lead">QQ音乐播放器是一款带有精彩音乐推荐功能的播放器。同时支持在线音乐和本地音乐的播放，是国内内容最丰富的音乐平台。其独特的音乐搜索和推荐功能，让您可以尽情地享受最流行，最火爆的音乐。只要您拥有QQ音乐播放器，就拥有属于您自己的流行音乐!</p>
+            </div>
+            <div class="col-md-5">
+                <img class="feature-image img-responsive" src="image/QQ截图20191216143036.png" alt="QQmusic">
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tab-wangyiyun">
+        <div class="row feature">
+            <div class="col-md-5">
+                <img class="feature-image img-responsive" src="image/109951164207180884.png" alt="wangyiyun">
+            </div>
+            <div class="col-md-7">
+                <h2 class="feature-heading">网易云音乐<span class="text-muted">网红播放器</span></h2>
+                <p class="lead">国内首个以“歌单”作为核心架构的音乐 APP，国内最大、最优质的“歌单”库，批量遇见好听音乐更加简单；轻松创建“歌单”。“乐评”氛围，同一首歌，通过其他人的评论，体会当中故事、体会同样的感受，在评论中找到共鸣。用户自上传“主播电台”，音乐故事、脱口秀、情感话题，每个人都能轻松表达自己。明星、专业音乐人、DJ进驻，专业的私房“歌单”和音乐推荐，格调顿现；专业音乐编辑每周新奇独到的专题评论， 听歌也可更有趣。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tab-kuwo">
+        <div class="row feature">
+            <div class="col-md-5">
+                <img class="feature-image img-responsive" src="image/47033c0.png" alt="wangyiyun">
+            </div>
+            <div class="col-md-7">
+                <h2 class="feature-heading">酷我音乐<span class="text-muted">经典软件</span></h2>
+                <p class="lead">整合了互联网中的上百万首歌曲、MV、歌词和写真，每周更新百张以上专辑。酷我音乐软件界面一点即播，无需等待；应用多资源超线程技术，令歌曲和MV一点即播，无需等待。同步欣赏明星写真、滚动歌词，像卡拉OK一样欣赏同步歌词，像看电影一样欣赏写真图片，还能把自己的照片配上喜欢的音乐做成MV 秀。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="tab-kugou">
+        <div class="row feature">
+            <div class="col-md-5">
+                <img class="feature-image img-responsive" src="image/20151128102356348.jpg" alt="wangyiyun">
+            </div>
+            <div class="col-md-7">
+                <h2 class="feature-heading">酷狗音乐<span class="text-muted">Hello 酷狗！</span></h2>
+                <p class="lead">酷狗音乐库提供的音乐资源很丰富，在该窗口可以看到有“乐库”、“电台”、“MV”、“直播”、 “歌词”五大标签，汇集了最新的流行音乐资讯及歌曲。酷狗音乐库中的所有音乐都是直接调用酷狗播放器进行播放，即使是最新的歌曲，也能找到并且播放时很流畅，使用酷狗在线试听不会在本地硬盘自动保存，如果想保存该试听歌曲，可以点击试听后面的“下载”按钮进行下载，下载速度快，下载完无要缓冲。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="divider">
+
+<footer>
+    <p class="pull-right"><a href="#top">回到顶部</a></p>
+    <p>© 2019 张晟</p>
+</footer>
+
+
+
+<script type="text/javascript" src="/assets/jQuery/jQuery-3.4.1.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script >
+    $('#feature-tab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+    $('#kiss a').click(function (e) {
+        var href = $(this).attr('href');
+        var tabId = $(this).attr('data-tab');
+        if ('#' !== href) {
+            e.preventDefault();
+            $(document).scrollTop($(href).offset().top - 70);
+            if (tabId) {
+                $('#feature-tab a[href=#' + tabId + ']').tab('show');
+            }
+        }
+    });
+</script>
+</body>
+</html>

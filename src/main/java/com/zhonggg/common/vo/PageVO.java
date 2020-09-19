@@ -1,6 +1,7 @@
-package com.zhonggg.commonUtils.vo;
+package com.zhonggg.common.vo;
 
 import com.github.pagehelper.PageInfo;
+import com.zhonggg.common.dto.PageDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,10 @@ public class PageVO <T>{
         this.pageSize = pageInfo.getPageSize();
         this.pages = pageInfo.getPages();
         this.data = pageInfo.getList();
+    }
+    public PageVO(PageDTO pageDTO) {
+        this.pageNo = pageDTO.getPageNo();
+        this.pageSize = pageDTO.getPageSize();
     }
     public Integer getPageNo() {
         return pageNo;

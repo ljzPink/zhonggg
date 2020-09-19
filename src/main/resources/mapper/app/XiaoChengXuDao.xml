@@ -30,7 +30,7 @@
     </select>
 
     <select id="getNews" parameterType="com.zhonggg.weixin.dto.NewDTO" resultType="com.zhonggg.weixin.vo.NewsVO">
-        SELECT * FROM  news ORDER  BY date DESC
+        SELECT * FROM  news ORDER  BY date DESC limit #{pageSize}
     </select>
 
     <select id="getSongs" parameterType="com.zhonggg.weixin.dto.SongDTO" resultType="com.zhonggg.weixin.vo.SongVO">

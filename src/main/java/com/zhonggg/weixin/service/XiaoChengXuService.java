@@ -2,7 +2,7 @@ package com.zhonggg.weixin.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zhonggg.commonUtils.vo.PageVO;
+import com.zhonggg.common.vo.PageVO;
 import com.zhonggg.weixin.dao.XiaoChengXuDao;
 import com.zhonggg.weixin.dto.NewDTO;
 import com.zhonggg.weixin.dto.PoemDTO;
@@ -35,8 +35,10 @@ public class XiaoChengXuService {
     }
 
     public PageVO<NewsVO> getNews(NewDTO newDTO) {
-        PageInfo<NewsVO> pageInfo = PageHelper.startPage(newDTO.getPageNo(), newDTO.getPageSize()).doSelectPageInfo(() -> xiaoChengXuDao.getNews(newDTO));
-        return new PageVO<NewsVO>(pageInfo);
+        PageVO<NewsVO> pageVO = new PageVO(newDTO);
+        pageVO.setData(xiaoChengXuDao.getNews(newDTO));
+
+        return pageVO;
 
     }
 

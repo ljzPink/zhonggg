@@ -1,25 +1,16 @@
 package com.zhonggg.login.controller;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import org.apache.tomcat.util.codec.binary.Base64;
+import com.zhonggg.security.model.User;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpSession;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.Callable;
 
 /**
  * @description:
@@ -29,114 +20,33 @@ import java.util.concurrent.Callable;
 @Controller
 public class LoginController {
 
-    @GetMapping("login/getQrCode")
-    public @ResponseBody
-    Map<String, Object> getQrCode() throws Exception {
-        Map<String, Object> result = new HashMap<>();
-        result.put("loginId", UUID.randomUUID());
-
-        // app端登录地址
-        String loginUrl = "http://localhost:8080/login/setUser/loginId/";
-        result.put("loginUrl", loginUrl);
-        result.put("image", createQrCode(loginUrl));
-        return result;
-    }
-
-    private String createQrCode(String content) throws Exception {
-        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-            Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
-            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            hints.put(EncodeHintType.MARGIN, 1);
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 400, 400, hints);
-            int width = bitMatrix.getWidth();
-            int height = bitMatrix.getHeight();
-            BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    image.setRGB(x, y, bitMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
-                }
-            }
-            ImageIO.write(image, "JPG", out);
-            return Base64.encodeBase64String(out.toByteArray());
+    @RequestMapping("/login")
+    public String login(User user) {
+        //添加用户认证信息
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
+                user.getUserName(),
+                user.getPassword()
+        );
+        try {
+            //进行验证，这里可以捕获异常，然后返回对应信息
+            subject.login(usernamePasswordToken);
+            //            subject.checkRole("admin");
+            //            subject.checkPermissions("query", "add");
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return "账号或密码错误！";
+        } catch (AuthorizationException e) {
+            e.printStackTrace();
+            return "没有权限";
         }
+        return "login success";
     }
-
-    @GetMapping("login/setUser/{loginId}/{user}")
-    public @ResponseBody Map<String, Object> setUser(@PathVariable String loginId, @PathVariable String user) {
-
-        //ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
-       /* String value = opsForValue.get(LOGIN_KEY + loginId);
-
-        if (value != null) {
-            // 保存认证信息
-            opsForValue.set(LOGIN_KEY + loginId, user, 1, TimeUnit.MINUTES);
-
-            // 发布登录广播消息
-            redisTemplate.convertAndSend(Receiver.TOPIC_NAME, loginId);
-        }*/
-
-        Map<String, Object> result = new HashMap<>();
-        result.put("loginId", loginId);
-        result.put("user", user);
-        return result;
-    }
-
-    /**
-     * 等待二维码扫码结果的长连接
-     *
-     * @param loginId
-     * @param session
-     * @return
-     */
-    @GetMapping("login/getResponse/{loginId}")
-    public @ResponseBody
-    Callable<Map<String, Object>> getResponse(@PathVariable String loginId, HttpSession session) {
-
-        // 非阻塞
-        Callable<Map<String, Object>> callable = () -> {
-
-            Map<String, Object> result = new HashMap<>();
-            result.put("loginId", loginId);
-
-            try {
-                //ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
-                // String user = opsForValue.get(LOGIN_KEY + loginId);
-                String user = "";
-                // 长时间不扫码，二维码失效。需重新获二维码
-                if (user == null) {
-                    result.put("success", false);
-                    result.put("stats", "refresh");
-                    return result;
-                }
-
-                // 已登录
-                if (!user.equals(loginId)) {
-                    // 登录成,认证信息写入session
-                    //session.setAttribute(WebSecurityConfig.SESSION_KEY, user);
-                    result.put("success", true);
-                    result.put("stats", "ok");
-                    return result;
-                }
-
-                // 等待二维码被扫
-                try {
-                    // 线程等待30秒
-                    //receiver.getLoginLatch(loginId).await(30, TimeUnit.SECONDS);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                result.put("success", false);
-                result.put("stats", "waiting");
-                return result;
-
-            } finally {
-                // 移除登录请求
-                // receiver.removeLoginLatch(loginId);
-            }
-        };
-
-        return callable;
+    //注解验角色和权限
+    @RequiresRoles("admin")
+    @RequiresPermissions("add")
+    @RequestMapping("/index")
+    public String index() {
+        return "index!";
     }
 }
